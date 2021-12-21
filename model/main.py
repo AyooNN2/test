@@ -26,3 +26,4 @@ player1 = Player("AyooN",100,25)
 warrior1 = Warrior("DarkWarrior",125,4)
 if issubclass(Warrior, Player):
     print("CACA")
+    print("fdp")
