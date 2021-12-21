@@ -79,6 +79,7 @@ generatepasswordbutton = Button(
 generatepasswordbutton.pack(fill=X)
 scale_password_length = Scale(
     right_frame,
+    font=("Helvetica",15),
     orient='horizontal', 
     from_=4, 
     to=20,
