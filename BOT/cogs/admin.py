@@ -85,13 +85,16 @@ class admin(commands.Cog):
     @commands.slash_command(name="create-vc",description="Crée un vocal pour vous (temporaire)")
     @commands.has_permissions(manage_channels=True)
     @commands.cooldown(1,30,commands.BucketType.user)
-    async def create_vc(self,ctx,name=None):
+    async def create_vc(self,ctx,name=None,user_limit=None):
         if name == None:
             name = f"Salon de {ctx.author.name}"
+        if user_limit == None or int(user_limit) > 99:
+            user_limit = 0
         category = discord.utils.get(ctx.guild.categories,id = 924134472578908171)
         channel = await ctx.guild.create_voice_channel(name=name,
                                              category=category,
-                                             reason = f"Création de salon par {ctx.author.name}#{ctx.author.discriminator}")
+                                             user_limit=user_limit,
+                                             reason = f"Création de automatique salon par {ctx.author.name}#{ctx.author.discriminator}")
 
         await ctx.respond(f"Un salon vocal du nom de **{name}** à été crée par {ctx.author.mention} !")
         created_vc.append(channel)

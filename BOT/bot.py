@@ -48,11 +48,13 @@ async def on_command_error(ctx, error):
         if number_of_error < 10:
             await ctx.respond("poto ça fais plus de 5 fois je te dis t'as pas les perm arrete sale fdp :skull:")
 
-#@bot.event
-#async def on_application_command_error(ctx,error):
-#    await ctx.respond("Une erreur est survenue")
-#    if isinstance(error,commands.MissingPermissions):
-#        await ctx.respond("Vous n'avez pas la permission d'éxecuter cette commande")
+@bot.event
+async def on_application_command_error(ctx,error):
+    await ctx.respond("Une erreur est survenue")
+    if isinstance(error,commands.MissingPermissions):
+        await ctx.respond("Vous n'avez pas la permission d'éxecuter cette commande")
+    elif isinstance(error,commands.CommandOnCooldown):
+        await ctx.respond("Vous êtes en cooldown !")
 
 
 @bot.slash_command(description= "Envoie une liste des commandes")
